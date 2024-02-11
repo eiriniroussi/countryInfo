@@ -8,7 +8,7 @@ INSTRUCTIONS TO INTERGRATE THE LIBRARY WITH THE JAVAFX APP
 -Download the jar file from GITHUB
 
 - After you have installed maven run this line to install the jar file to your local maven repository: 
-mvn install:install-file -Dfile=XXXXXXX -DgroupId=gr.unipi.library -DartifactId=countries-data-library -Dversion=0.0.1-SNAPSHOT -Dpackaging=jar
+mvn install:install-file -Dfile=path-where-you-saved-the-jar-file -DgroupId=gr.unipi.library -DartifactId=countries-data-library -Dversion=0.0.1-SNAPSHOT -Dpackaging=jar
 
 - Ensure that the library is included as a dependancy in the pom.xml file as follows (If not please add the following lines in your pom.xml file):
 <dependency>
