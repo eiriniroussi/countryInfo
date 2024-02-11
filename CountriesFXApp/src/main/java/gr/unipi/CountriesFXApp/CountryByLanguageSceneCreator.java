@@ -4,6 +4,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 import exception.countriesAPIException;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.geometry.Side;
@@ -93,16 +94,35 @@ public class CountryByLanguageSceneCreator extends SceneCreator implements Event
     
     
     //Create tableColumns
-    private void createTableColumns() {
-        String[] columnTitles = {"Country", "Capital", "Population", "Continent", "Currencies"};
-        String[] propertyNames = {"name", "capital", "population", "continents", "formattedCurrencies"};
+	private void createTableColumns() {
+	    String[] columnTitles = {"Country", "Capital", "Population", "Continent", "Currencies"};
+	    String[] propertyNames = {"name", "capital", "population", "continents", "formattedCurrencies"};
 
-        for (int i = 0; i < columnTitles.length; i++) {
-            TableColumn<countryInfo, String> column = new TableColumn<>(columnTitles[i]);
-            column.setCellValueFactory(new PropertyValueFactory<>(propertyNames[i]));
-            searchByLanguageView.getColumns().add(column);
-        }
-    }
+	    for (int i = 0; i < columnTitles.length; i++) {
+	        final int finalI = i; // Create a final copy of the variable
+	        TableColumn<countryInfo, String> column = new TableColumn<>(columnTitles[i]);
+
+	        if (propertyNames[finalI].equals("capital") || propertyNames[finalI].equals("continents") || propertyNames[finalI].equals("formattedCurrencies")) {
+	            column.setCellValueFactory(cellData -> {
+	                countryInfo country = cellData.getValue();
+	                switch (propertyNames[finalI]) {
+	                    case "capital":
+	                        return new SimpleStringProperty(country.getCapital() != null ? String.join(", ", country.getCapital()) : "No Capital");
+	                    case "continents":
+	                        return new SimpleStringProperty(country.getContinents() != null ? String.join(", ", country.getContinents()) : "No Continent");
+	                    case "formattedCurrencies":
+	                        return new SimpleStringProperty(country.getFormattedCurrencies() != null ? String.join(", ", country.getFormattedCurrencies()) : "No Currency");
+	                    default:
+	                        return new SimpleStringProperty("");
+	                }
+	            });
+	        } else {
+	            column.setCellValueFactory(new PropertyValueFactory<>(propertyNames[finalI]));
+	        }
+
+	        searchByLanguageView.getColumns().add(column);
+	    }
+	}
     
     
     //Customize the scene

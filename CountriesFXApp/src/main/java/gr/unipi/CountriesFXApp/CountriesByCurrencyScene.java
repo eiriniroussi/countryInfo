@@ -23,6 +23,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import model.countryInfo;
 import service.deserializeData;
+import javafx.beans.property.SimpleStringProperty;
+
+
 
 public class CountriesByCurrencyScene extends SceneCreator implements EventHandler<MouseEvent> {
 	
@@ -85,17 +88,36 @@ public class CountriesByCurrencyScene extends SceneCreator implements EventHandl
 
 	}
 
-	  //Create tableColumns
-    private void createTableColumns() {
-        String[] columnTitles = {"Country", "Capital", "Population", "Continent", "Currencies"};
-        String[] propertyNames = {"name", "capital", "population", "continents", "formattedCurrencies"};
+	private void createTableColumns() {
+	    String[] columnTitles = {"Country", "Capital", "Population", "Continent", "Currencies"};
+	    String[] propertyNames = {"name", "capital", "population", "continents", "formattedCurrencies"};
 
-        for (int i = 0; i < columnTitles.length; i++) {
-            TableColumn<countryInfo, String> column = new TableColumn<>(columnTitles[i]);
-            column.setCellValueFactory(new PropertyValueFactory<>(propertyNames[i]));
-            searchByCurrencyView.getColumns().add(column);
-        }
-    }
+	    for (int i = 0; i < columnTitles.length; i++) {
+	        final int finalI = i; // Create a final copy of the variable
+	        TableColumn<countryInfo, String> column = new TableColumn<>(columnTitles[i]);
+
+	        if (propertyNames[finalI].equals("capital") || propertyNames[finalI].equals("continents") || propertyNames[finalI].equals("formattedCurrencies")) {
+	            column.setCellValueFactory(cellData -> {
+	                countryInfo country = cellData.getValue();
+	                switch (propertyNames[finalI]) {
+	                    case "capital":
+	                        return new SimpleStringProperty(country.getCapital() != null ? String.join(", ", country.getCapital()) : "No Capital");
+	                    case "continents":
+	                        return new SimpleStringProperty(country.getContinents() != null ? String.join(", ", country.getContinents()) : "No Continent");
+	                    case "formattedCurrencies":
+	                        return new SimpleStringProperty(country.getFormattedCurrencies() != null ? String.join(", ", country.getFormattedCurrencies()) : "No Currency");
+	                    default:
+	                        return new SimpleStringProperty("");
+	                }
+	            });
+	        } else {
+	            column.setCellValueFactory(new PropertyValueFactory<>(propertyNames[finalI]));
+	        }
+
+	        searchByCurrencyView.getColumns().add(column);
+	    }
+	}
+
     
     
     //Setup for the search suggestion popup
@@ -122,7 +144,7 @@ public class CountriesByCurrencyScene extends SceneCreator implements EventHandl
         searchByCurrencyView.setStyle("-fx-pref-height: 200;");
         searchByCurrencyView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         rootGridPane.setAlignment(Pos.CENTER);
-        currencyField.setPromptText("Enter country name");
+        currencyField.setPromptText("Enter currency");
 
         return new Scene(rootGridPane, width, height);
     }
