@@ -17,3 +17,5 @@ mvn install:install-file -Dfile=path-where-you-saved-the-jar-file -DgroupId=gr.u
     <version>0.0.1-SNAPSHOT</version>
 </dependency>
 
+- In the pom.xml file please replace the path inside the <countries-data-library-sysrtemPath></countries-data-library-systemPath> with the path of the jar file installed in your local maven repository
+
