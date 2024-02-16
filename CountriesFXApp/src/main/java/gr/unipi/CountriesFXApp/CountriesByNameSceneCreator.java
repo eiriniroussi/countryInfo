@@ -53,7 +53,7 @@ public class CountriesByNameSceneCreator extends SceneCreator implements EventHa
 		   //Setup
         rootGridPane = new GridPane();
 
-        nameLbl = new Label("Name");
+        nameLbl = new Label("Search by Country Name:");
         nameField = new TextField();
         setupTextFieldAndContextMenu();
 
@@ -80,11 +80,17 @@ public class CountriesByNameSceneCreator extends SceneCreator implements EventHa
 
         createTableColumns();
 
+
+        nameField.setMinSize(200,35);
+        goBackBtn.setMinSize(85,35);
+        searchBtn.setMinSize(85,35);
         goBackBtn.setOnMouseClicked(this);
         searchBtn.setOnMouseClicked(this);
-        goBackBtn.setStyle("-fx-background-color: #ff1744; -fx-text-fill: white;");
-        searchBtn.setStyle("-fx-background-color: #198754; -fx-text-fill: white;");
-
+        goBackBtn.getStyleClass().addAll("button", "go-back-button");
+        searchBtn.getStyleClass().addAll("button");
+        nameField.getStyleClass().addAll("text-field");
+        nameLbl.getStyleClass().addAll("label");
+       
 	    
 	}
 	
@@ -144,13 +150,14 @@ public class CountriesByNameSceneCreator extends SceneCreator implements EventHa
     //Customize the scene
     @Override
     Scene createScene() {
-        rootGridPane.setStyle("-fx-padding: 10; -fx-hgap: 10; -fx-vgap: 10;");
-        searchByNameView.setStyle("-fx-pref-height: 200;");
+        rootGridPane.setStyle("-fx-padding: 10; -fx-hgap: 10; -fx-vgap: 10;-fx-background-color: #cfe2ff;");
+        searchByNameView.setStyle("-fx-pref-height: 200;-fx-pref-width: 500;");
         searchByNameView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         rootGridPane.setAlignment(Pos.CENTER);
         nameField.setPromptText("Enter country name");
-
+        rootGridPane.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
         return new Scene(rootGridPane, width, height);
+
     }
     
     

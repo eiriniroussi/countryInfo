@@ -54,7 +54,7 @@ public class CountriesByCurrencyScene extends SceneCreator implements EventHandl
 		   //Setup
         rootGridPane = new GridPane();
 
-        currencyLbl = new Label("Currency");
+        currencyLbl = new Label("Search by Country's Currency:");
         currencyField = new TextField();
         setupTextFieldAndContextMenu();
 
@@ -83,9 +83,13 @@ public class CountriesByCurrencyScene extends SceneCreator implements EventHandl
 
         goBackBtn.setOnMouseClicked(this);
         searchBtn.setOnMouseClicked(this);
-        goBackBtn.setStyle("-fx-background-color: #ff1744; -fx-text-fill: white;");
-        searchBtn.setStyle("-fx-background-color: #198754; -fx-text-fill: white;");
-
+        goBackBtn.getStyleClass().addAll("button", "go-back-button");
+        searchBtn.getStyleClass().addAll("button");
+        currencyField.getStyleClass().addAll("text-field");
+        currencyLbl.getStyleClass().addAll("label");
+        currencyField.setMinSize(200,35);
+        goBackBtn.setMinSize(85,35);
+        searchBtn.setMinSize(85,35);
 	}
 
 	private void createTableColumns() {
@@ -140,9 +144,10 @@ public class CountriesByCurrencyScene extends SceneCreator implements EventHandl
   //Customize the scene
     @Override
     Scene createScene() {
-        rootGridPane.setStyle("-fx-padding: 10; -fx-hgap: 10; -fx-vgap: 10;");
-        searchByCurrencyView.setStyle("-fx-pref-height: 200;");
+        rootGridPane.setStyle("-fx-padding: 10; -fx-hgap: 10; -fx-vgap: 10;-fx-background-color: #cfe2ff;");
+        searchByCurrencyView.setStyle("-fx-pref-height: 200;-fx-pref-width: 500;");
         searchByCurrencyView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        rootGridPane.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
         rootGridPane.setAlignment(Pos.CENTER);
         currencyField.setPromptText("Enter currency");
 

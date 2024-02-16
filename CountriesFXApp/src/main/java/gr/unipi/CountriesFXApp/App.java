@@ -19,7 +19,7 @@ public class App extends Application{
     @Override
     public void start(Stage primaryStage) {
     	
-    	this.primaryStage = primaryStage;
+    	App.primaryStage = primaryStage;
     	
     	SceneCreator mainSceneCreator = new MainSceneCreator(800,300);
     	mainScene = mainSceneCreator.createScene();

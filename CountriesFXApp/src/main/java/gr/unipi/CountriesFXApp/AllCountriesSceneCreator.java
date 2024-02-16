@@ -1,5 +1,4 @@
 package gr.unipi.CountriesFXApp;
-import com.jfoenix.controls.JFXButton;
 import java.net.URISyntaxException;
 
 import exception.countriesAPIException;
@@ -56,8 +55,10 @@ public class AllCountriesSceneCreator extends SceneCreator implements EventHandl
 
         goBackBtn.setOnMouseClicked(this);
         searchBtn.setOnMouseClicked(this);
-        goBackBtn.setStyle("-fx-background-color: #ff1744; -fx-text-fill: white;");
-        searchBtn.setStyle("-fx-background-color: #198754; -fx-text-fill: white;");
+        goBackBtn.getStyleClass().addAll("button", "go-back-button");
+        searchBtn.getStyleClass().addAll("button");
+        goBackBtn.setMinSize(85,35);
+        searchBtn.setMinSize(85,35);
 	}
 	
     //Create tableColumns
@@ -93,11 +94,11 @@ public class AllCountriesSceneCreator extends SceneCreator implements EventHandl
 	
 	@Override
 	Scene createScene() {
-        rootGridPane.setStyle("-fx-padding: 10; -fx-hgap: 10; -fx-vgap: 10;");
-        showAllcountriesView.setStyle("-fx-pref-height: 200;");
+        rootGridPane.setStyle("-fx-padding: 10; -fx-hgap: 10; -fx-vgap: 10;-fx-background-color: #cfe2ff;");
+        showAllcountriesView.setStyle("-fx-pref-height: 200;-fx-pref-width: 500;");
         showAllcountriesView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         rootGridPane.setAlignment(Pos.CENTER);
-
+        rootGridPane.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
         return new Scene(rootGridPane, width, height);
 		
 	}
@@ -123,6 +124,7 @@ public class AllCountriesSceneCreator extends SceneCreator implements EventHandl
         }else if (event.getSource() == goBackBtn) {
             App.primaryStage.setScene(App.mainScene);
             App.primaryStage.setTitle("Country Information Searching");
+            showAllcountriesView.getItems().clear();
         }
     }
     

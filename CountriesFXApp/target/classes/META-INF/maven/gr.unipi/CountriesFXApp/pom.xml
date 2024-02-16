@@ -5,7 +5,6 @@
     <artifactId>CountriesFXApp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <properties>
-		<countries-data-library-systemPath>/Users/eiriniroussi/.m2/repository/gr/unipi/library/countries-data-library/0.0.1-SNAPSHOT/countries-data-library-0.0.1-SNAPSHOT.jar</countries-data-library-systemPath>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
@@ -20,8 +19,6 @@
 	          <groupId>gr.unipi.library</groupId>
 			  <artifactId>countries-data-library</artifactId>
 			  <version>0.0.1-SNAPSHOT</version>
-			  <scope>system</scope>
-			  <systemPath>/Users/eiriniroussi/.m2/repository/gr/unipi/library/countries-data-library/0.0.1-SNAPSHOT/countries-data-library-0.0.1-SNAPSHOT.jar</systemPath>
   		</dependency>
 	    <dependency>
 	        <groupId>org.apache.httpcomponents</groupId>

@@ -67,6 +67,7 @@ public class MainSceneCreator extends SceneCreator implements EventHandler<Mouse
 
     //Create scene
     @Override
+	public
     Scene createScene() {
         return new Scene(root, width, height);
     }

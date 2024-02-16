@@ -50,7 +50,7 @@ public class CountryByLanguageSceneCreator extends SceneCreator implements Event
     deserializeData countryService = new deserializeData("https://restcountries.com");
     
     
-    //Counstructor
+    //Constructor
 
     public CountryByLanguageSceneCreator(double width, double height) {
         super(width, height);
@@ -59,7 +59,7 @@ public class CountryByLanguageSceneCreator extends SceneCreator implements Event
         //Setup
         rootGridPane = new GridPane();
 
-        languageLbl = new Label("Language");
+        languageLbl = new Label("Search by Country's Language:");
         languageField = new TextField();
         setupTextFieldAndContextMenu();
 
@@ -88,8 +88,14 @@ public class CountryByLanguageSceneCreator extends SceneCreator implements Event
 
         goBackBtn.setOnMouseClicked(this);
         searchBtn.setOnMouseClicked(this);
-        goBackBtn.setStyle("-fx-background-color: #ff1744; -fx-text-fill: white;");
-        searchBtn.setStyle("-fx-background-color: #198754; -fx-text-fill: white;");
+        goBackBtn.getStyleClass().addAll("button", "go-back-button");
+        searchBtn.getStyleClass().addAll("button");
+        languageField.getStyleClass().addAll("text-field");
+        languageLbl.getStyleClass().addAll("label");
+        languageField.setMinSize(200,35);
+        goBackBtn.setMinSize(85,35);
+        searchBtn.setMinSize(85,35);
+
     }
     
     
@@ -126,11 +132,11 @@ public class CountryByLanguageSceneCreator extends SceneCreator implements Event
     
     
     //Customize the scene
-    @Override
     Scene createScene() {
-        rootGridPane.setStyle("-fx-padding: 10; -fx-hgap: 10; -fx-vgap: 10;");
-        searchByLanguageView.setStyle("-fx-pref-height: 200;");
+        rootGridPane.setStyle("-fx-padding: 10; -fx-hgap: 10; -fx-vgap: 10;-fx-background-color: #cfe2ff;");
+        searchByLanguageView.setStyle("-fx-pref-height: 200;-fx-pref-width: 500;");
         searchByLanguageView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        rootGridPane.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
         rootGridPane.setAlignment(Pos.CENTER);
         languageField.setPromptText("Enter language");
 
@@ -147,7 +153,7 @@ public class CountryByLanguageSceneCreator extends SceneCreator implements Event
                 suggestionsMenu.getItems().clear();
                 for (String input : lastFiveValidInputs) {
                     MenuItem item = new MenuItem(input);
-                    item.setOnAction(ev -> languageField.setText(input));
+                    item.setOnAction(ev -> languageField.setText(input));// takes an EventHandler<ActionEvent> as its argument ev
                     suggestionsMenu.getItems().add(item);
                 }
                 suggestionsMenu.show(languageField, Side.BOTTOM, 0, 0);
@@ -208,11 +214,11 @@ public class CountryByLanguageSceneCreator extends SceneCreator implements Event
     
     //Alert method
     private void showAlert(Alert.AlertType alertType, String title, String content) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
+        Alert alert = new Alert(alertType);//create a new alert
+        alert.setTitle(title);//set the window title
+        alert.setHeaderText(null);//header text of the alert
+        alert.setContentText(content);//Alert main text
+        alert.showAndWait();//Display the alert and wait for someone to close it
     }
 }
 
