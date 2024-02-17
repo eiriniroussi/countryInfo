@@ -19,6 +19,7 @@ public class App extends Application{
     @Override
     public void start(Stage primaryStage) {
     	
+    	//Set the primary window for the java app
     	App.primaryStage = primaryStage;
     	
     	SceneCreator mainSceneCreator = new MainSceneCreator(800,300);
@@ -28,7 +29,7 @@ public class App extends Application{
     	primaryStage.setScene(mainScene);
     	primaryStage.show();
     	
-    	
+    	//The scenes creation
     	SceneCreator countriesByLanguage = new CountryByLanguageSceneCreator(800,300);
     	countriesByLanguageScene = countriesByLanguage.createScene();
     	

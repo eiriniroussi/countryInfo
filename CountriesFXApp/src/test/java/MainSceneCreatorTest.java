@@ -21,12 +21,12 @@ public class MainSceneCreatorTest {
 
     @Test
     public void testCreateScene() {
-        // Create your scene under the JavaFX thread
+        
         Platform.runLater(() -> {
             MainSceneCreator mainSceneCreator = new MainSceneCreator(800, 300);
             Scene scene = mainSceneCreator.createScene();
             assertNotNull(scene);
         });
     }
-    //With this test we validated that a scene was created using MainSceneCreator!
+    //With this test we can validate that a scene was created using MainSceneCreator!
 }
