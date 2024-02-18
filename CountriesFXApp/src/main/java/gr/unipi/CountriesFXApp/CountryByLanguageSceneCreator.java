@@ -182,7 +182,7 @@ public class CountryByLanguageSceneCreator extends SceneCreator implements Event
                     }
                 } catch (countriesAPIException | URISyntaxException e) {
                     if (e.getMessage().contains("\"status\":404")) {
-                        showAlert(Alert.AlertType.INFORMATION, "No Results", "No data available for the language: " + language);
+                        showAlert(Alert.AlertType.INFORMATION, "No Results", "Please try again! There is no native language with the name: " + language);
                     } else {
                         e.printStackTrace();
                         showAlert(Alert.AlertType.ERROR, "API Error", "An error occurred while fetching data: " + e.getMessage());

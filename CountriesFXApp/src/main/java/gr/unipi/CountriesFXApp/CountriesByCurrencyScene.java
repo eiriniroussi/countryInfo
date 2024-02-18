@@ -200,7 +200,7 @@ public class CountriesByCurrencyScene extends SceneCreator implements EventHandl
                     }
                 } catch (countriesAPIException | URISyntaxException e) {
                     if (e.getMessage().contains("\"status\":404")) {
-                        showAlert(Alert.AlertType.INFORMATION, "No Results", "No data available for the country: " + currency);
+                        showAlert(Alert.AlertType.INFORMATION, "No Results", "Please try again! There is no currency with the name: " + currency);
                     } else {
                         e.printStackTrace();
                         showAlert(Alert.AlertType.ERROR, "API Error", "An error occurred while fetching data: " + e.getMessage());

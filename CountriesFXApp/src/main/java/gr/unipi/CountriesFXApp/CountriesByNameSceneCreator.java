@@ -206,7 +206,7 @@ public class CountriesByNameSceneCreator extends SceneCreator implements EventHa
                     }
                 } catch (countriesAPIException | URISyntaxException e) {
                     if (e.getMessage().contains("\"status\":404")) {
-                        showAlert(Alert.AlertType.INFORMATION, "No Results", "No data available for the country: " + name);
+                        showAlert(Alert.AlertType.INFORMATION, "No Results", "Please try again! There is no country with the name: " + name);
                     } else {
                         e.printStackTrace();
                         showAlert(Alert.AlertType.ERROR, "API Error", "An error occurred while fetching data: " + e.getMessage());
